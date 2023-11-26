@@ -34,8 +34,7 @@ export default function Login() {
     <div style={{ 
       backgroundImage: `url(${img})` 
     }}>
-
-    </div>
+</div>
     <img src={img} />
     <div  style={{ backgroundImage:{img},maxWidth:"100%",maxHeight:"100%" }}>
       <div className='container mt-20' style={{ backgroundColor: "red" }}>
