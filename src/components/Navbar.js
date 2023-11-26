@@ -26,10 +26,13 @@ class Navbar extends Component {
                   <i className={item.icon}></i>
                   {item.title}
                 </Link>
+                
               </li>
+              
             );
           })}
-          <button>Login</button>
+          
+          <Link className="" to='/login'><button>Login</button></Link>
         </ul>
       </nav>
     );
