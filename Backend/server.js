@@ -55,8 +55,6 @@ const userSchema = new mongoose.Schema({
     }],
 });
 
-
-
 const User = mongoose.model('User', userSchema);
 
 // Register a new user
@@ -115,7 +113,7 @@ app.post('/login', async (req, res) => {
         }
 
         // Generate a JWT token
-        const token = jwt.sign({ userId: user._id, username: user.username }, 'your-secret-key');
+        const token = jwt.sign({ userId: user._id, username: user.username }, 'myS');
 
         res.status(200).json({ token });
     } catch (error) {
@@ -185,7 +183,11 @@ app.listen(PORT, () => {
 
 // Add the package schema
 const packageSchema = new mongoose.Schema({
-    city: {
+    src: {
+        type: String,
+        required: true,
+    },
+    dest: {
         type: String,
         required: true,
     },
@@ -196,7 +198,7 @@ const packageSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-    },
+    }
 });
 
 const Package = mongoose.model('Package', packageSchema);
@@ -260,14 +262,15 @@ app.get('/user-packages', isAuthorized, async (req, res) => {
     }
 });
 
-// Example package creation
+
 app.post('/create-package', isAdmin, async (req, res) => {
     try {
         const { city, description, price } = req.body;
 
         // Create a new package
         const newPackage = new Package({
-            city,
+            src,
+            dest,
             description,
             price,
         });
