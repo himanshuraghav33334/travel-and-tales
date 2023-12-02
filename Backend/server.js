@@ -1,5 +1,5 @@
 // server.js
-
+// import { createRoot } from "react-dom/client";
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -185,9 +185,13 @@ app.listen(PORT, () => {
 
 // Add the package schema
 const packageSchema = new mongoose.Schema({
-    city: {
+    src: {
         type: String,
         required: true,
+    },
+    des:{
+       type: String,
+       required:true,
     },
     description: {
         type: String,

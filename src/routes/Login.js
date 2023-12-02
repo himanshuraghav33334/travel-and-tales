@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import img from './back.jpg'
+import { createRoot } from "react-dom/client";
+// import img from './back.jpg'
 export default function Login() {
   // const img="back.jpg";
   const [credentials, setCredentials] = useState({ email: "", password: "" })
@@ -32,11 +33,11 @@ export default function Login() {
   return (
     <>
     <div style={{ 
-      backgroundImage: `url(${img})` 
+      // backgroundImage: `url(${img})` 
     }}>
 </div>
-    <img src={img} />
-    <div  style={{ backgroundImage:{img},maxWidth:"100%",maxHeight:"100%" }}>
+    
+    <div  style={{maxWidth:"100%",maxHeight:"100%" }}>
       <div className='container mt-20' style={{ backgroundColor: "red" }}>
         <form onSubmit={handleSubmit}>
 
