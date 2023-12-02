@@ -1,5 +1,5 @@
 // server.js
-// import { createRoot } from "react-dom/client";
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -54,8 +54,6 @@ const userSchema = new mongoose.Schema({
         ref: 'Package',
     }],
 });
-
-
 
 const User = mongoose.model('User', userSchema);
 
@@ -115,7 +113,7 @@ app.post('/login', async (req, res) => {
         }
 
         // Generate a JWT token
-        const token = jwt.sign({ userId: user._id, username: user.username }, 'your-secret-key');
+        const token = jwt.sign({ userId: user._id, username: user.username }, 'myS');
 
         res.status(200).json({ token });
     } catch (error) {
@@ -189,9 +187,9 @@ const packageSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    des:{
-       type: String,
-       required:true,
+    dest: {
+        type: String,
+        required: true,
     },
     description: {
         type: String,
@@ -200,7 +198,7 @@ const packageSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-    },
+    }
 });
 
 const Package = mongoose.model('Package', packageSchema);
@@ -264,14 +262,15 @@ app.get('/user-packages', isAuthorized, async (req, res) => {
     }
 });
 
-// Example package creation
+
 app.post('/create-package', isAdmin, async (req, res) => {
     try {
-        const { city, description, price } = req.body;
+        const { src, dest, description, price } = req.body;
 
         // Create a new package
         const newPackage = new Package({
-            city,
+            src,
+            dest,
             description,
             price,
         });
@@ -285,4 +284,3 @@ app.post('/create-package', isAdmin, async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
-
