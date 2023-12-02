@@ -265,7 +265,7 @@ app.get('/user-packages', isAuthorized, async (req, res) => {
 
 app.post('/create-package', isAdmin, async (req, res) => {
     try {
-        const { city, description, price } = req.body;
+        const { src, dest, description, price } = req.body;
 
         // Create a new package
         const newPackage = new Package({
