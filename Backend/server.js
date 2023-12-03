@@ -4,12 +4,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    
+}));
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/travelandtales', {
     useNewUrlParser: true,
@@ -85,6 +90,7 @@ app.post('/register', async (req, res) => {
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error(error);
+        
         // Check if the error is a validation error
         if (error.name === 'ValidationError') {
             return res.status(400).json({ message: error.message });
@@ -99,7 +105,7 @@ app.post('/login', async (req, res) => {
     
     try {
         const { username, password } = req.body;
-
+        
         // Find the user in the database
         const user = await User.findOne({ username });
         if (!user) {
@@ -113,9 +119,9 @@ app.post('/login', async (req, res) => {
         }
 
         // Generate a JWT token
-        const token = jwt.sign({ userId: user._id, username: user.username }, 'myS');
-
-        res.status(200).json({ token });
+        const token = jwt.sign({ userId: user._id, username: user.username }, 'your-secret-key');
+        console.log(password)
+        res.status(201).json({ token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error' });
