@@ -33,6 +33,7 @@ class Navbar extends Component {
           })}
           
           <Link className="" to='/login'><button>Login</button></Link>
+          <Link className="" to='/index'><button>Index</button></Link>
         </ul>
       </nav>
     );

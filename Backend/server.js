@@ -213,6 +213,7 @@ const Package = mongoose.model('Package', packageSchema);
 app.get('/packages', async (req, res) => {
     try {
         const packages = await Package.find();
+        
         res.json(packages);
     } catch (error) {
         console.error(error);

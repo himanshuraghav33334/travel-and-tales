@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../Context/AuthContext';
+import { Link } from 'react-router-dom';
 
-
+  
 // Define the Login component
 const Login = () => {
   // State variables to store username and password
@@ -75,12 +76,11 @@ const Login = () => {
                   <div class="ml-3 text-sm">
                     <label for="remember" class="text-gray-500 ">Remember me</label>
                   </div>
-                </div>
-                <a href="#" class="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a>
+                </div>                <a href="#" class="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a>
               </div>
-              <button type="submit" class="w-full  text-white bg-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Sign in</button>
+              <button type="submit" class="w-full  text-white bg-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Submit</button>
               <p class="text-sm font-light text-gray-500 ">
-                Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline ">Sign up</a>
+                Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline "><Link className="" to="/createuser" >Signup</Link></a>
               </p>
             </form>
           </div>
