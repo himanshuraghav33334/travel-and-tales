@@ -10,7 +10,7 @@ export default function Carousel1() {
     </div>
     <div className="carousel-inner">
       <div className="carousel-item active">
-        <img src="https://source.unsplash.com/1600x500/?hills" className="d-block w-100" alt="..."/>
+        <img src="https://source.unsplash.com/1600x500/?mountains" className="d-block w-100" alt="..."/>
        
       </div>
       <div className="carousel-item">

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { useAuth } from "./Context/AuthContext";
 import SignUpForm from "./routes/SignUpForm";
 import Index from "./routes/Index";
+import CardList from "./components/CardList";
 
 
 export default function App() {
@@ -22,12 +23,14 @@ export default function App() {
   return (
     <div className="App">
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginSignup />} />
         <Route exact path="/createuser" element={<SignUpForm />} />
         <Route path="/index" element={<Index/>}/>
+        <Route path= "/packages"element={<CardList/>}/>
         
       </Routes>
     </div>

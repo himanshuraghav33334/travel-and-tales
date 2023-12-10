@@ -12,7 +12,7 @@ function Home() {
         title="Your Journey Begins"
         text="Search Your Destination"
         buttonText="Travel Places"
-        url="/"
+        url="https://www.expedia.com/"
         btnClass="show"
       />
       <Footer />

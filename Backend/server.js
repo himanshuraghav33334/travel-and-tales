@@ -281,8 +281,7 @@ app.post('/create-package', isAdmin, async (req, res) => {
             description,
             price,
         });
-        
-
+       
         await newPackage.save();
 
         res.status(201).json({ message: 'Package created successfully' });
@@ -290,4 +289,28 @@ app.post('/create-package', isAdmin, async (req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
+});
+app.get('/search-packages', isAuthorized, async (req, res) => {
+    try {
+        let { src, dest } = req.query;
+
+        console.log(src, dest);
+        let packages;
+        if (src && dest) {
+            packages = await Package.find({ src, dest });
+        } else if (src) {
+            packages = await Package.find({ src});
+            console.log(packages);
+            
+        } else if (dest) {
+            packages = await Package.find({ dest });
+        } else {
+            return res.status(400).json({ message: 'Invalid search query' });
+        }
+
+        res.json(packages);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 });

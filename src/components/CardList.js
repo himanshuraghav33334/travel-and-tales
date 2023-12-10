@@ -1,29 +1,39 @@
-import React, { useEffect } from 'react'
+
+import React, { useEffect, useState } from 'react'
+import {useAuth} from '../Context/AuthContext'
+import Card from './Card'
 
 export default function CardList() {
-
-    if (authToken) {
-        const res = fetch('http://localhost:5000/packages', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: ${authToken},
-          },
-        })
-          .then((res) => res.json()).then((data) => {
-            console.log(data);
-          });
-        
+    const {authToken}=useAuth()
+    const [packages,setPackages]=useState([])
     
-      }
-      useEffect(()=>{
-        loadData()
-      },[]);
+    useEffect( () => {
+        const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1')
+        const res=  fetch('http://localhost:5000/packages',{
+          method:'GET',
+          headers: {
+            'Content-Type':'application/json',
+            'Authorization': token
+          }
+        }).then((resp)=>resp.json()
+            
+        ).then((data)=>{
+            
+            setPackages(data)
+            console.log([...data])
+        })
+    },[])
 
 
-  return (
-    <div>
-      
-    </div>
-  )
+
+
+    return (
+        <div>
+      {packages.map((data)=>(
+        <div>
+          <Card src={data. src} dest={data. dest} price={data. price} desc={data. description} > </Card>
+        </div>
+      ))}
+        </div>
+    )
 }
