@@ -1,6 +1,7 @@
 // Import necessary dependencies
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +12,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { authToken, login } = useAuth();
-
+  const navigate=useNavigate();
   // Event handler for form submission
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -33,6 +34,7 @@ const Login = () => {
         document.cookie = `token=${response.data.token}`;
         // Handle the response as needed (e.g., redirect on success)
         console.log('Login successful');
+        navigate('/index');
       } else {
         // Handle the case where response.data is undefined
         console.error('Login failed. Response data is undefined.');
@@ -61,7 +63,7 @@ const Login = () => {
                 <label for="username" class="block mb-2 text-sm font-medium text-gray-900 ">username</label>
                 <input type="text"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)} name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="name@company.com" required="" />
+                  onChange={(e) => setUsername(e.target.value)} name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="" required="" />
               </div>
               <div>
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>

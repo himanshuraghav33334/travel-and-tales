@@ -68,7 +68,7 @@ app.post('/register', async (req, res) => {
         const { name,  username, password, email, Location } = req.body;
 
         // Check if the username already exists
-        const existingUser = await User.findOne({ username });
+        const existingUser  = await User.findOne({ username });
         if (existingUser) {
             return res.status(400).json({ message: 'Username already exists' });
         }
@@ -94,7 +94,7 @@ app.post('/register', async (req, res) => {
         // Check if the error is a validation error
         if (error.name === 'ValidationError') {
             return res.status(400).json({ message: error.message });
-        }
+        } 
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
